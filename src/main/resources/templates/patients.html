@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" çhref="/webjars/boostrap/5.2.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/webjars/bootstrap-icons/1.11.3/font/bootstrap-icons.css"
+</head>
+<body>
+<div class="p-3">
+    <div class="card"></div>
+    <div class="card-header">Liste Patients</div>
+    <div class="card-body">
+        <form method="get" th:action="@{index}">
+          <label>Keyword:</label>
+          <input type="text" name="keyword" th:value="${keyword}">
+           <button type="submit" class="btn btn-info">
+               <i class="bi bi-search"></i>
+           </button>
+
+        </form>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Date</th>
+                <th>Malade</th>
+                <th>Score</th>
+            </tr>
+            <tr th:each="p:${listPatients}">
+            <td th;text="${p.id}"></td>
+            <td th;text="${p.nom}"></td>
+            <td th;text="${p.dateNaissance}"></td>
+            <td th;text="${p.malade}"></td>
+            <td th;text="${p.score}"></td>
+            <td>
+                <a onclick="javascript:return confirm('Etes vous sure de vouloir supprimer?')" th:href="@{delete(id=${p.id},keyword=${keyword},page=${currentPage})}"  class="btn btn-danger">
+                    <i class="bi bi-trash"></i>
+                </a>
+            </td>
+            </tr>
+
+            </thead>
+        </table>
+        <ul class="nav nav-pills">
+            <li th:each="page,status:${page}">
+                //pour naviger entre les differentes pages ça se visualise au niveau de url
+                <a th:href="@{/index(page=${status.index},keyword=${keyword})}"
+                   th:class="${currentPage==status.index?'btn btn-info ms-1':'btn btn-outline-info ms-1'}"
+                  #status.index represente numéro de la page
+                   th:text="${1+status.index}"></a>
+
+            </li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>
