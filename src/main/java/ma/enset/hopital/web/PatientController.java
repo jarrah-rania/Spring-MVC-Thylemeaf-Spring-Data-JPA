@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import ma.enset.hopital.entities.Patient;
 import ma.enset.hopital.repository.PatientRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -20,9 +21,9 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
-@NoArgsConstructor
-public class PatientController {
 
+public class PatientController {
+    @Autowired
     private PatientRepository patientRepository;
 
     @GetMapping("/index")

@@ -10,11 +10,11 @@ import java.util.Date;
 @Entity
 @Data
 @AllArgsConstructor
-//@NoArgsConstructor @Builder
+@NoArgsConstructor
+@Builder
 public class Patient {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Getter
     @NotEmpty
     @Size(min=4,max=40)
     private String nom;
@@ -25,7 +25,7 @@ public class Patient {
     @DecimalMin("100")
     private int score;
 
-    public Patient(Long id, String nom, Date dateNaissance, boolean malade, int score) {
+   /* public Patient(Long id, String nom, Date dateNaissance, boolean malade, int score) {
         this.id = id;
         this.nom = nom;
 
@@ -33,14 +33,31 @@ public class Patient {
         this.malade = malade;
         this.score = score;
     }
-  public String getNom()
-  {
-      return this.nom;
-  }
+
     public Patient()
  {
 
- }
+ }*/
+   public String getNom()
+   {
+       return this.nom;
+   }
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
 
+    public void setDateNaissance(Date dateNaissance) {
+        this.dateNaissance = dateNaissance;
+    }
+    public void setMalade(boolean malade) {
+        this.malade = malade;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
     }
 
